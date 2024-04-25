@@ -5,7 +5,7 @@
 ## TODO
 
 - [x] Make it deploy (vercel)
-- [ ] Scaffold basic ui with mock data
+- [x] Scaffold basic ui with mock data (Used Images From Google using the search term "[Old Computers imagesize:1280x720](https://www.google.com/search?q=Old+Computers+imagesize%3A1280x720)" )
 - [ ] Tidy up build process
 - [ ] Actually set up a database (vercel postgres)
 - [ ] Attach database to UI
