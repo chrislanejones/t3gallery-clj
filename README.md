@@ -1,4 +1,24 @@
-# Create T3 App
+# Create T3 App from YouTube Video [Theo - t3․gg ](https://www.youtube.com/@t3dotgg)
+
+[From 0 to Production - The Modern React Tutorial (RSCs, Next.js, Shadui, Drizzle, TS and more)](https://www.youtube.com/watch?v=d5x0JCZbAJs)
+
+## TODO
+
+- [x] Make it deploy (vercel)
+- [x] Scaffold basic ui with mock data
+- [x] Tidy up build process
+- [x] Actually set up a database (vercel postgres)
+- [x] Attach database to UI
+- [x] Add authentication (w/ clerk)
+- [x] Add image upload
+- [x] "taint" (server-only)
+- [x] Use Next/Image component
+- [x] Error management (w/ Sentry)
+- [x] Routing/image page (parallel route)
+- [x] Update upload button to be less cringe
+- [x] Analytics (posthog)
+- [x] Delete button (w/ Server Actions)
+- [x] Ratelimiting (upstash)
 
 This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
 
