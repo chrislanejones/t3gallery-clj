@@ -20,9 +20,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`font-sans ${inter.variable} bg-black text-white`}>
+      <body
+        className={`font-sans ${inter.variable} bg-gradient-to-r from-indigo-400 to-cyan-400 text-white`}
+      >
         <div className="w-full">
-          <h1>First Layout</h1>
+          <h1 className="m-4 text-xl font-bold">First Layout</h1>
         </div>
         {children}
       </body>
