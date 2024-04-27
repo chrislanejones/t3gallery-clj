@@ -13,6 +13,17 @@ export const metadata = {
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
+function TopNav() {
+  return (
+    <nav className="font-border grid grid-cols-4 justify-between justify-items-center border-b p-5 text-xl font-bold text-white">
+      <div>Gallery</div>
+      <div></div>
+      <div></div>
+      <div>Sign In</div>
+    </nav>
+  );
+}
+
 export default function RootLayout({
   children,
 }: {
@@ -20,13 +31,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body
-        className={`font-sans ${inter.variable} bg-gradient-to-r from-indigo-400 to-cyan-400 text-white`}
-      >
-        <div className="w-full">
-          <h1 className="m-4 text-xl font-bold">First Layout</h1>
+      <body className="bg-gradient-to-r from-indigo-400 to-cyan-400">
+        <TopNav />
+        <div className={`font-sans ${inter.variable} grid p-4 text-white`}>
+          {children}
         </div>
-        {children}
       </body>
     </html>
   );
