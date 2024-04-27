@@ -21,6 +21,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`font-sans ${inter.variable} bg-black text-white`}>
+        <div className="w-full">
+          <h1>First Layout</h1>
+        </div>
         {children}
       </body>
     </html>
