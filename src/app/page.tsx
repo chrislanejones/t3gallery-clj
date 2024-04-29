@@ -13,7 +13,9 @@ export default async function HomePage() {
         {[...images, ...images, ...images].map((image, index) => (
           <div key={image.id + "-" + index} className="">
             <img src={image.url} />
-            <div className="grid justify-items-center p-2">{image.name}</div>
+            <div className="text-large grid justify-items-center p-2 font-bold">
+              {image.name}
+            </div>
           </div>
         ))}
       </div>
