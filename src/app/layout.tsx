@@ -1,7 +1,8 @@
-import { ClerkProvider } from "@clerk/nextjs";
 import "~/styles/globals.css";
+import "@uploadthing/react/styles.css";
 import { TopNav } from "~/_componetes/topnav";
 import { Inter } from "next/font/google";
+import { ClerkProvider } from "@clerk/nextjs";
 
 const inter = Inter({
   subsets: ["latin"],
