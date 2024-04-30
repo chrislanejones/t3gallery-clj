@@ -14,17 +14,6 @@ export const metadata = {
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
-// function TopNav() {
-//   return (
-//     <nav className="font-border grid grid-cols-4 justify-between justify-items-center border-b p-5 text-xl font-bold text-white">
-//       <div>Gallery</div>
-//       <div></div>
-//       <div></div>
-//       <div>Sign In</div>
-//     </nav>
-//   );
-// }
-
 export default function RootLayout({
   children,
 }: {
