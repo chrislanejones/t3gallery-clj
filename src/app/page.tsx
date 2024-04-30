@@ -9,8 +9,8 @@ async function Images() {
   });
   return (
     <div className="grid grid-cols-3 gap-5">
-      {[...images, ...images, ...images].map((image, index) => (
-        <div key={image.id + "-" + index} className="">
+      {images.map((image) => (
+        <div key={image.id}>
           <img src={image.url} />
           <div className="text-large grid justify-items-center p-2 font-bold">
             {image.name}
