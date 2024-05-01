@@ -1,11 +1,12 @@
 import { SignedIn, SignedOut } from "@clerk/nextjs";
-import { getMyImages } from "~/server/queries";
+import { db } from "~/server/db";
 
 export const dynamic = "force-dynamic";
 
 async function Images() {
-  const images = await getMyImages();
-
+  const images = await db.query.images.findMany({
+    orderBy: (model, { desc }) => desc(model.id),
+  });
   return (
     <div className="grid grid-cols-3 gap-5">
       {images.map((image) => (
