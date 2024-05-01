@@ -10,7 +10,7 @@ export function TopNav() {
     <nav className="font-border grid grid-cols-4 justify-between justify-items-center border-b p-5 text-xl font-bold text-white">
       <div>Gallery</div>
       <div></div>
-      <div className="grid">
+      <div>
         <UploadButton
           endpoint="imageUploader"
           onClientUploadComplete={() => {
