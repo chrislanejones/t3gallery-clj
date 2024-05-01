@@ -1,10 +1,10 @@
 import { SignedIn, SignedOut } from "@clerk/nextjs";
-import { getImages } from "~/server/queries";
+import { getMyImages } from "~/server/queries";
 
 export const dynamic = "force-dynamic";
 
 async function Images() {
-  const images = await getImages();
+  const images = await getMyImages();
 
   return (
     <div className="grid grid-cols-3 gap-5">
