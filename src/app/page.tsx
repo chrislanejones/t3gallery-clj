@@ -10,6 +10,12 @@ async function Images() {
     <div className="grid grid-cols-3 gap-5">
       {images.map((image) => (
         <div key={image.id}>
+          <Image
+            src="/profile.png"
+            width={500}
+            height={500}
+            alt="Picture of the author"
+          />
           <img src={image.url} />
           <div className="text-large grid justify-items-center p-2 font-bold">
             {image.name}
