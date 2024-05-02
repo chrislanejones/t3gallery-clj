@@ -1,4 +1,5 @@
 import { SignedIn, SignedOut } from "@clerk/nextjs";
+import Image from "next/image";
 import { getMyImages } from "~/server/queries";
 
 export const dynamic = "force-dynamic";
@@ -11,12 +12,12 @@ async function Images() {
       {images.map((image) => (
         <div key={image.id}>
           <Image
-            src="/profile.png"
-            width={500}
-            height={500}
-            alt="Picture of the author"
+            src={image.url}
+            style={{ objectFit: "contain" }}
+            width={1280}
+            height={720}
+            alt={image.name}
           />
-          <img src={image.url} />
           <div className="text-large grid justify-items-center p-2 font-bold">
             {image.name}
           </div>
