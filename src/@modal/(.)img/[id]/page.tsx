@@ -5,13 +5,13 @@ export default async function PhotoModal({
 }: {
   params: { id: string };
 }) {
-  const idAsNumber = Number(photoId);
-  if (Number.isNaN(idAsNumber)) throw new Error("Invaild photo id");
+  const isAsNumber = Number(photoId);
+  if (Number.isNaN(isAsNumber)) throw new Error("Invaild photo id");
 
-  const image = await getImage(idAsNumber);
+  const image = await getImage(isAsNumber);
   return (
     <div>
-      <img src={image.url} className="w-96" />
+      <img src={image.url} alt="thumbanil" className="w-96" />
     </div>
   );
 }

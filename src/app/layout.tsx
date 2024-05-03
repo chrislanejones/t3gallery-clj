@@ -4,7 +4,7 @@ import { TopNav } from "~/_componetes/topnav";
 import { Inter } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
 import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
-import { extractRouterConfig } from "node_modules/uploadthing/server/index.cjs";
+import { extractRouterConfig } from "uploadthing/server";
 import { ourFileRouter } from "./api/uploadthing/core";
 
 const inter = Inter({
