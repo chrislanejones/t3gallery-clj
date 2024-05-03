@@ -20,8 +20,10 @@ export const metadata = {
 
 export default function RootLayout({
   children,
+  modal,
 }: {
   children: React.ReactNode;
+  modal: React.ReactNode;
 }) {
   return (
     <ClerkProvider>
@@ -39,6 +41,7 @@ export default function RootLayout({
           <TopNav />
           <div className={`font-sans ${inter.variable} grid p-4 text-white`}>
             {children}
+            {modal}
           </div>
         </body>
       </html>
