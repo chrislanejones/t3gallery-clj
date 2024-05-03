@@ -42,6 +42,7 @@ export default function RootLayout({
           <div className={`font-sans ${inter.variable} grid p-4 text-white`}>
             {children}
             {modal}
+            <div id="modal-root" />
           </div>
         </body>
       </html>
