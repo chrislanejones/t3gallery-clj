@@ -17,8 +17,9 @@ const config = {
   },
 };
 
-export default config;
+import { withSentryConfig } from "@sentry/nextjs";
 
+export default config;
 
 // Injected content via Sentry wizard below
 
@@ -62,5 +63,5 @@ module.exports = withSentryConfig(
     // https://docs.sentry.io/product/crons/
     // https://vercel.com/docs/cron-jobs
     automaticVercelMonitors: true,
-  }
+  },
 );
