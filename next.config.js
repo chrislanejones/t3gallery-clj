@@ -5,7 +5,7 @@
 await import("./src/env.js");
 
 /** @type {import("next").NextConfig} */
-const config = {
+const coreConfig = {
   images: {
     remotePatterns: [{ hostname: "utfs.io" }],
   },
@@ -19,14 +19,8 @@ const config = {
 
 import { withSentryConfig } from "@sentry/nextjs";
 
-export default config;
-
-// Injected content via Sentry wizard below
-
-const { withSentryConfig } = require("@sentry/nextjs");
-
-module.exports = withSentryConfig(
-  module.exports,
+const config = withSentryConfig(
+  coreConfig,
   {
     // For all available options, see:
     // https://github.com/getsentry/sentry-webpack-plugin#options
@@ -65,3 +59,5 @@ module.exports = withSentryConfig(
     automaticVercelMonitors: true,
   },
 );
+
+export default config;
