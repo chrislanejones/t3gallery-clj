@@ -37,13 +37,13 @@ export default function RootLayout({
            */
           routerConfig={extractRouterConfig(ourFileRouter)}
         />
-        <body className="bg-gradient-to-r from-indigo-400 to-cyan-400">
-          <TopNav />
-          <div className={`font-sans ${inter.variable} grid p-4 text-white`}>
-            {children}
+        <body className={`font-sans ${inter.variable}`}>
+          <div className="grid h-screen grid-rows-[auto,1fr]">
+            <TopNav />
+            <main className="overflow-y-scroll">{children}</main>
             {modal}
-            <div id="modal-root" />
           </div>
+          <div id="modal-root" />
         </body>
       </html>
     </ClerkProvider>
