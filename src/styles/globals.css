@@ -1,3 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  @apply bg-black text-white;
+}
+
+dialog:modal {
+  max-width: 100vw;
+  max-height: 100vh;
+}
