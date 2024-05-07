@@ -1,7 +1,6 @@
-import { Modal } from "~/app/@modal/img/[id]/modal";
-import { getImage } from "~/server/queries";
+import { FullPageImageView } from "~/components/full-page-image-view";
 
-export default async function PhotoModal({
+export default function PhotoPage({
   params: { id: photoId },
 }: {
   params: { id: string };
@@ -9,10 +8,5 @@ export default async function PhotoModal({
   const isAsNumber = Number(photoId);
   if (Number.isNaN(isAsNumber)) throw new Error("Invaild photo id");
 
-  const image = await getImage(isAsNumber);
-  return (
-    <Modal>
-      <img src={image.url} alt="thumbanil" className="w-96" />
-    </Modal>
-  );
+  return <FullPageImageView id={isAsNumber} />;
 }
