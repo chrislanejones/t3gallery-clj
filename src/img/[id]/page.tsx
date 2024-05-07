@@ -1,5 +1,5 @@
 import { getImage } from "~/server/queries";
-import { Modal } from "./modal";
+import { Modal } from "../../@modal/img/[id]/modal";
 
 export default async function PhotoModal({
   params: { id: photoId },
