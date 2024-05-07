@@ -6,23 +6,22 @@ import { UploadButton } from "~/utils/uploadthing";
 
 export function TopNav() {
   const router = useRouter();
+
   return (
-    <nav className="font-border grid grid-cols-4 justify-between justify-items-center border-b p-5 text-xl font-bold text-white">
+    <nav className="flex w-full items-center justify-between border-b p-4 text-xl font-semibold">
       <div>Gallery</div>
-      <div></div>
-      <div>
-        <UploadButton
-          endpoint="imageUploader"
-          onClientUploadComplete={() => {
-            router.refresh();
-          }}
-        ></UploadButton>
-      </div>
-      <div>
+
+      <div className="flex flex-row">
         <SignedOut>
           <SignInButton />
         </SignedOut>
         <SignedIn>
+          <UploadButton
+            endpoint="imageUploader"
+            onClientUploadComplete={() => {
+              router.refresh();
+            }}
+          />
           <UserButton />
         </SignedIn>
       </div>
