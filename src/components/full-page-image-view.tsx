@@ -10,11 +10,15 @@ export async function FullPageImageView(props: { id: number }) {
       <div className="flex flex-shrink items-center justify-center">
         <img src={image.url} className="flex-shrink object-contain" />
       </div>
-      <div className="flex-shink-0 w-100 flex flex-col gap-2 border-l">
-        <div className="border-b p-2 text-center text-lg">{image.name}</div>
-        <div className="flex flex-col p-2 text-center">
+      <div className="flex-shink-0 flex w-48 flex-col border-l">
+        <div className="border-b p-4 text-center text-lg">{image.name}</div>
+        <div className="flex flex-col p-3">
           <span>Uploaded By:</span>
           {uploaderInfo.fullName}
+        </div>
+        <div className="flex flex-col p-3">
+          <span>Created On:</span>
+          {new Date(image.createdAt).toLocaleDateString()}
         </div>
       </div>
     </div>
