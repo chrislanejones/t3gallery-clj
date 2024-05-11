@@ -47,7 +47,6 @@ function UploadSVG() {
     </svg>
   );
 }
-DELETE FROM t3gallery_image WHERE id='23';
 
 export function SimpleUploadButton() {
   const router = useRouter();
