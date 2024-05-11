@@ -29,6 +29,8 @@ const useUploadThingInputProps = (...args: Input) => {
   };
 };
 
+function UploadSVG() {}
+
 export function SimpleUploadButton() {
   const router = useRouter();
   const { inputProps } = useUploadThingInputProps("imageUploader", {
