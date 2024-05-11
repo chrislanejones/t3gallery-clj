@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useUploadThing } from "~/utils/uploadthing";
 
 // inferred input off useUploadThing
@@ -29,9 +30,21 @@ const useUploadThingInputProps = (...args: Input) => {
 };
 
 export function SimpleUploadButton() {
+  const router = useRouter();
+  const { inputProps } = useUploadThingInputProps("imageUploader", {
+    onClientUploadComplete(res) {
+      router.refresh();
+    },
+  });
   return (
     <div>
-      <button>Upload</button>
+      <label htmlFor="upload-button">Upload</label>
+      <input
+        id="upload-button"
+        type="file"
+        className="sr-only"
+        {...inputProps}
+      />
     </div>
   );
 }
