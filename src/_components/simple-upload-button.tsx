@@ -72,26 +72,24 @@ function LoadingSpinnerSVG() {
 export function SimpleUploadButton() {
   const router = useRouter();
 
-  useEffect(() => {
-    toast(
-      <div className="flex items-stretch p-2">
-        <span className="flex-start ">
-          <LoadingSpinnerSVG />
-        </span>
-        <span className="flex-end pl-2 text-xl">uploading...</span>
-      </div>,
-      {
-        duration: 100000,
-        id: "upload-begin",
-      },
-    );
-  }, []);
+  // Test Toast
+  // useEffect(() => {
+  //   toast(
+  //     <div className="flex items-center gap-2">
+  //       <LoadingSpinnerSVG /> <span className="text-lg">Uploading...</span>
+  //     </div>,
+  //     {
+  //       duration: 100000,
+  //       id: "upload-begin",
+  //     },
+  //   );
+  // }, []);
+
   const { inputProps } = useUploadThingInputProps("imageUploader", {
     onUploadBegin() {
       toast(
-        <div>
-          <LoadingSpinnerSVG />
-          uploading...
+        <div className="flex items-center gap-2">
+          <LoadingSpinnerSVG /> <span className="text-lg">Uploading...</span>
         </div>,
         {
           duration: 100000,
