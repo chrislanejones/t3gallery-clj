@@ -27,3 +27,11 @@ const useUploadThingInputProps = (...args: Input) => {
     isUploading: $ut.isUploading,
   };
 };
+
+export function SimpleUploadButton() {
+  return (
+    <div>
+      <button>Upload</button>
+    </div>
+  );
+}
