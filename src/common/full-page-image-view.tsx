@@ -1,4 +1,5 @@
 import { clerkClient } from "@clerk/nextjs/server";
+import { Button } from "~/components/ui/button";
 import { getImage } from "~/server/queries";
 
 export async function FullPageImageView(props: { id: number }) {
@@ -19,6 +20,10 @@ export async function FullPageImageView(props: { id: number }) {
         <div className="flex flex-col p-3">
           <span>Created On:</span>
           {new Date(image.createdAt).toLocaleDateString()}
+        </div>
+        <div className="flex flex-col p-3">
+          <span>Delete Image:</span>
+          <Button variant={"destructive"}>Delete</Button>
         </div>
       </div>
     </div>
