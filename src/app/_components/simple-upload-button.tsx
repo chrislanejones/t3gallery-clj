@@ -92,7 +92,7 @@ export function SimpleUploadButton() {
     onUploadBegin() {
       posthog.capture("upload_begin");
       toast(
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 text-white">
           <LoadingSpinnerSVG /> <span className="text-lg">Uploading...</span>
         </div>,
         {
@@ -101,13 +101,19 @@ export function SimpleUploadButton() {
         },
       );
     },
+    onUploadError(error) {
+      posthog.capture("upload_error", { error });
+      toast.dismiss("upload-begin");
+      toast.error("Upload failed");
+    },
     onClientUploadComplete() {
       toast.dismiss("upload-begin");
-      toast("Upload Complete!");
+      toast("Upload complete!");
 
       router.refresh();
     },
   });
+
   return (
     <div>
       <label

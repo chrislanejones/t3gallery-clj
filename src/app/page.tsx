@@ -16,14 +16,12 @@ async function Images() {
             <Image
               src={image.url}
               style={{ objectFit: "contain" }}
-              width={1280}
-              height={720}
+              width={192}
+              height={192}
               alt={image.name}
             />
           </Link>
-          <div className="text-large grid justify-items-center p-2 font-bold">
-            {image.name}
-          </div>
+          <div>{image.name}</div>
         </div>
       ))}
     </div>
@@ -34,7 +32,9 @@ export default async function HomePage() {
   return (
     <main className="">
       <SignedOut>
-        <div className="w-ful h-full text-2xl">Please Sign in Above</div>
+        <div className="h-full w-full text-center text-2xl">
+          Please sign in above
+        </div>
       </SignedOut>
       <SignedIn>
         <Images />
