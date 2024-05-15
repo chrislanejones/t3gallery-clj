@@ -3,6 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
+  "pnpm": {
+    "peerDependencyRules": {
+      "allowedVersions": {
+        "react": "18.2.27"
+      }
+    }
+  },
   "scripts": {
     "build": "next build",
     "db:push": "drizzle-kit push:pg",
