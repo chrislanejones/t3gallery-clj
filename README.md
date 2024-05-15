@@ -18,8 +18,7 @@
 - [x] Update upload button to be less cringe
 - [x] ShadUI - (this is for toast)
 - [x] Adding analytics w/ PostHog
-- [ ] Delete button (w/ Server Actions)
-- [ ] Ratelimiting (upstash)
+- [x] Delete button (w/ Server Actions)
 
 This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
 
