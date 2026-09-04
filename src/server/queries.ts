@@ -20,8 +20,8 @@ export function parseImageId(raw: string): number {
   return parsed.data;
 }
 
-function requireUserId(): string {
-  const { userId } = auth();
+async function requireUserId(): Promise<string> {
+  const { userId } = await auth();
   // Middleware should have caught this already; if it did not, fail closed
   // rather than falling through to an unscoped query.
   if (!userId) redirect("/");
@@ -29,7 +29,7 @@ function requireUserId(): string {
 }
 
 export async function getMyImages() {
-  const userId = requireUserId();
+  const userId = await requireUserId();
 
   return db.query.images.findMany({
     where: (model, { eq }) => eq(model.userId, userId),
@@ -38,7 +38,7 @@ export async function getMyImages() {
 }
 
 export async function getImage(id: number) {
-  const userId = requireUserId();
+  const userId = await requireUserId();
 
   const image = await db.query.images.findFirst({
     where: (model, { eq, and }) =>
@@ -54,7 +54,7 @@ export async function getImage(id: number) {
 }
 
 export async function deleteImage(id: number) {
-  const userId = requireUserId();
+  const userId = await requireUserId();
 
   const deleted = await db
     .delete(images)

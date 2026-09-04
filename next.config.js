@@ -4,6 +4,14 @@
  */
 await import("./src/env.js");
 
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+// Pin build file-tracing to this project. Next otherwise walks up and infers the
+// home directory as the workspace root (there is a stray lockfile there), which
+// scopes dependency tracing over files that have no business in the deployment.
+const projectRoot = path.dirname(fileURLToPath(import.meta.url));
+
 const isDev = process.env.NODE_ENV === "development";
 
 /**
@@ -62,8 +70,12 @@ const securityHeaders = [
 /** @type {import("next").NextConfig} */
 const coreConfig = {
   images: {
-    remotePatterns: [{ hostname: "utfs.io" }],
+    remotePatterns: [
+      { protocol: "https", hostname: "utfs.io" },
+      { protocol: "https", hostname: "*.ufs.sh" },
+    ],
   },
+  outputFileTracingRoot: projectRoot,
   // Never let a Next version leak in response headers.
   poweredByHeader: false,
   async headers() {
@@ -80,47 +92,31 @@ const coreConfig = {
   },
 };
 
-import { withSentryConfig } from "@sentry/nextjs";
+import { withSentryConfig } from "@sentry/nextjs/config";
 
-const config = withSentryConfig(
-  coreConfig,
-  {
-    // For all available options, see:
-    // https://github.com/getsentry/sentry-webpack-plugin#options
+// Sentry v8+ takes a single options object; `transpileClientSDK` and
+// `hideSourceMaps` were removed (source maps are now deleted after upload).
+const config = withSentryConfig(coreConfig, {
+  org: "webjaxdrive",
+  project: "t3gallery",
 
-    // Suppresses source map uploading logs during build
-    silent: true,
-    org: "webjaxdrive",
-    project: "t3gallery",
+  // Suppresses source map uploading logs during build
+  silent: true,
+
+  // Upload a larger set of source maps for prettier stack traces (increases build time)
+  widenClientFileUpload: true,
+
+  sourcemaps: {
+    // Do not leave source maps sitting in the deployed bundle after upload.
+    deleteSourcemapsAfterUpload: true,
   },
-  {
-    // For all available options, see:
-    // https://docs.sentry.io/platforms/javascript/guides/nextjs/manual-setup/
 
-    // Upload a larger set of source maps for prettier stack traces (increases build time)
-    widenClientFileUpload: true,
-
-    // Transpiles SDK to be compatible with IE11 (increases bundle size)
-    transpileClientSDK: true,
-
-    // Uncomment to route browser requests to Sentry through a Next.js rewrite to circumvent ad-blockers.
-    // This can increase your server load as well as your hosting bill.
-    // Note: Check that the configured route will not match with your Next.js middleware, otherwise reporting of client-
-    // side errors will fail.
-    // tunnelRoute: "/monitoring",
-
-    // Hides source maps from generated client bundles
-    hideSourceMaps: true,
-
-    // Automatically tree-shake Sentry logger statements to reduce bundle size
-    disableLogger: true,
-
-    // Enables automatic instrumentation of Vercel Cron Monitors.
-    // See the following for more information:
-    // https://docs.sentry.io/product/crons/
-    // https://vercel.com/docs/cron-jobs
+  webpack: {
+    // Tree-shake Sentry logger statements to reduce bundle size.
+    treeshake: { removeDebugLogging: true },
+    // Automatic instrumentation of Vercel Cron Monitors.
     automaticVercelMonitors: true,
   },
-);
+});
 
 export default config;

@@ -10,7 +10,8 @@ export async function FullPageImageView(props: { photoId: string }) {
   // current user — no other account's profile is ever fetched here.
   const image = await getImage(idAsNumber);
 
-  const userInfo = await clerkClient.users.getUser(image.userId);
+  const client = await clerkClient();
+  const userInfo = await client.users.getUser(image.userId);
 
   return (
     <div className="flex h-full w-screen min-w-0 items-center justify-center text-white">

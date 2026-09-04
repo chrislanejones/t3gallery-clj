@@ -3,7 +3,6 @@
 import { useRouter } from "next/navigation";
 import { useUploadThing } from "~/utils/uploadthing";
 import { toast } from "sonner";
-import { useEffect } from "react";
 import { usePostHog } from "posthog-js/react";
 
 // inferred input off useUploadThing
@@ -25,7 +24,7 @@ const useUploadThingInputProps = (...args: Input) => {
   return {
     inputProps: {
       onChange,
-      multiple: ($ut.permittedFileInfo?.config?.image?.maxFileCount ?? 1) > 1,
+      multiple: ($ut.routeConfig?.image?.maxFileCount ?? 1) > 1,
       accept: "image/*",
     },
     isUploading: $ut.isUploading,
