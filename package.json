@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
+  "engines": {
+    "node": "24.x"
+  },
   "pnpm": {
     "//overrides": "Force patched versions of transitive deps flagged by `pnpm audit`. Re-check after every dependency bump and drop entries whose parent has caught up.",
     "overrides": {
@@ -65,7 +68,7 @@
   },
   "devDependencies": {
     "@types/eslint": "^8.56.2",
-    "@types/node": "^20.8.10",
+    "@types/node": "^24.13.4",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
     "@typescript-eslint/eslint-plugin": "^7.1.1",
