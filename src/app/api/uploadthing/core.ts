@@ -8,21 +8,27 @@ const f = createUploadthing();
 
 export const ourFileRouter = {
   imageUploader: f({ image: { maxFileSize: "4MB", maxFileCount: 40 } })
-    .middleware(async ({ req }) => {
-      const user = auth();
-      if (!user.userId) throw new UploadThingError("Unauthorized");
+    // This middleware is the authorisation boundary for uploads: it runs on our
+    // server before UploadThing issues a presigned URL. Everything it returns is
+    // signed by UploadThing and echoed back to onUploadComplete, so `userId` here
+    // cannot be forged by the client.
+    .middleware(async () => {
+      const { userId } = await auth();
+      if (!userId) throw new UploadThingError("Unauthorized");
 
-      const fullUserData = await clerkClient.users.getUser(user.userId);
+      const client = await clerkClient();
+      const fullUserData = await client.users.getUser(userId);
 
       if (fullUserData?.privateMetadata?.["can-upload"] !== true)
         throw new UploadThingError("User Does Not Have Upload Permissions");
 
-      return { userId: user.userId };
+      return { userId };
     })
     .onUploadComplete(async ({ metadata, file }) => {
       await db.insert(images).values({
         name: file.name,
-        url: file.url,
+        // `file.url` is deprecated in uploadthing v7 and removed in v8.
+        url: file.ufsUrl,
         userId: metadata.userId,
       });
 
